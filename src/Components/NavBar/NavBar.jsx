@@ -14,7 +14,7 @@ const NavBar = () => {
     { path: "/stats", text: "Stats", icon: <ImStatsDots /> },
   ];
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar bg-base-100 shadow-sm sticky top-0 z-50">
       <div className="flex-1">
         <Link href={"/"} className="btn btn-ghost text-2xl font-extrabold">
           Keen<span className="text-[#244D3F]">Keeper</span>
