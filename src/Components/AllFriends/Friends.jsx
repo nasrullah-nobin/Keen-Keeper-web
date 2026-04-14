@@ -1,16 +1,21 @@
+"use client"
 import Image from 'next/image';
-import React from 'react';
+import Link from 'next/link';
+import React, { useContext } from 'react';
+import { FriendContext} from '../FriendsProvider/FriendsProvider';
+import { BounceLoader } from 'react-spinners';
 
-const Friends = async () => {
-        const data = await fetch('http://localhost:3000/friends.json');
-        const friends = await data.json();
-    
-    console.log(friends)
+const Friends = () => {
+        const {friends,loading} = useContext(FriendContext);
+        if(loading){
+            return <div className='flex justify-center items-center min-h-screen'><BounceLoader color="#244D3F"/></div>
+        }
+
     return (
         <div className='max-w-7xl mx-auto'>
            <h3 className='text-2xl font-semibold mb-4'>Your Friends</h3> 
            <div className='grid grid-cols-4 gap-6'>
-            {friends.map(friend => <div key={friend.id} className='bg-white rounded p-6 text-center space-y-3.5'>
+            {friends.map(friend => <Link href={`/friendDetails/${friend.id}`} key={friend.id} className='bg-white rounded p-6 text-center space-y-3.5'>
                 <Image src={friend.picture} alt={`${friend.name} 's picture`} width={80} height={80} className='rounded-full mx-auto'></Image>
                 <h4 className='text-2xl font-semibold'>{friend.name}</h4>
                 <p className='text-sm text-gray-400'>{friend.days_since_contact}d ago</p>
@@ -20,7 +25,7 @@ const Friends = async () => {
                <div className={`badge text-white font-medium ${friend.status === 'on-track'? 'bg-[#244D3F]': friend.status=== 'overdue'? 'bg-[#EF4444]': friend.status==='almost due'? 'bg-[#EFAD44]': ''}`}>
                 {friend.status}
                </div>
-            </div>)}
+            </Link>)}
            </div>
         </div>
     );
