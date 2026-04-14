@@ -1,5 +1,5 @@
+import Friends from "@/Components/AllFriends/Friends";
 import Banner from "@/Components/Banner/Banner";
-import NavBar from "@/Components/NavBar/NavBar";
 
 export const metadata = {
   title: "Home | KeenKeeper",
@@ -9,6 +9,7 @@ export default function Home() {
   return (
   <>
   <Banner></Banner>
+  <Friends></Friends>
   </>
   );
 }
