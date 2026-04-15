@@ -7,19 +7,24 @@ import { MdOutlineTextsms } from "react-icons/md";
 import { PiVideoCameraBold } from "react-icons/pi";
 import { RiDeleteBin5Line, RiNotificationSnoozeLine } from "react-icons/ri";
 import { FriendContext } from "../FriendsProvider/FriendsProvider";
+import { toast } from "react-toastify";
 const FriendsDetails = ({ friend }) => {
-
   const { setTimeline } = useContext(FriendContext);
 
-  const clickHandler = (friendId, type) => {
-   setTimeline((prev) => [
-  ...prev,
-  {
-    friendId: friend.id,
-    type: type,
-    createdAt: new Date().toLocaleDateString(),
-  },
-]);
+  const clickHandler = (type) => {
+    type=== 'Call' && toast.success(`You called ${friend.name}`)
+    type=== 'Text' && toast.success(`You sent a message to ${friend.name}`)
+    type=== 'Video' && toast.success(`You had a video call with ${friend.name}`)
+    setTimeline((prev) => [
+      ...prev,
+      {
+        friendId: friend.id,
+        type: type,
+        createdAt: new Date().toLocaleDateString(),
+      },
+    ]);
+
+    
   };
 
   return (
@@ -91,17 +96,23 @@ const FriendsDetails = ({ friend }) => {
           <p className="text-xl font-medium text-[#244D3F]">Quick Check-In</p>
           <div className="flex justify-center items-center gap-6 text-center">
             <div
-              onClick={() => clickHandler(friend.id, "Call")}
+              onClick={() => clickHandler("Call")}
               className="bg-[#E9E9E9] p-4 rounded w-full flex flex-col gap-2 items-center cursor-pointer"
             >
               <IoCall />
               <p>Call</p>
             </div>
-            <div onClick={() => clickHandler(friend.id, "Text")} className="bg-[#E9E9E9] p-4 rounded w-full flex flex-col gap-2 items-center cursor-pointer">
+            <div
+              onClick={() => clickHandler("Text")}
+              className="bg-[#E9E9E9] p-4 rounded w-full flex flex-col gap-2 items-center cursor-pointer"
+            >
               <MdOutlineTextsms />
               <p>Text</p>
             </div>
-            <div onClick={() => clickHandler(friend.id, "Video")} className="bg-[#E9E9E9] p-4 rounded w-full flex flex-col gap-2 items-center cursor-pointer">
+            <div
+              onClick={() => clickHandler("Video")}
+              className="bg-[#E9E9E9] p-4 rounded w-full flex flex-col gap-2 items-center cursor-pointer"
+            >
               <PiVideoCameraBold />
               <p>Video</p>
             </div>
