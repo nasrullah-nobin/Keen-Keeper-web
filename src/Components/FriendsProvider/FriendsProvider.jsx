@@ -5,6 +5,8 @@ export const FriendContext = createContext();
 const FriendsProvider = ({ children }) => {
   const [friends, setFriends] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [timeline,setTimeline] = useState([]);
+  console.log(timeline)
   useEffect(() => {
     const friendFetch = async () => {
       try {
@@ -18,10 +20,10 @@ const FriendsProvider = ({ children }) => {
       }
     };
     friendFetch()
-  });
+  },[]);
   return (
     <FriendContext.Provider
-      value={{ friends, setFriends, loading, setLoading }}
+      value={{ friends, setFriends, loading, setLoading,timeline,setTimeline }}
     >
       {children}
     </FriendContext.Provider>
