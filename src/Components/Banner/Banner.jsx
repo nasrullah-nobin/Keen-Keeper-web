@@ -37,7 +37,7 @@ const Banner = () => {
           + Add a Friend
         </button>
       </div>
-      <div className="grid grid-cols-4 gap-6 text-center max-w-7xl mx-auto pb-10">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center max-w-7xl mx-auto pb-10">
         <div className="bg-white rounded p-8">
           <p className="font-semibold text-3xl  text-[#244D3F]">
             {friends.length}
