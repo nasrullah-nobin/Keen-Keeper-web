@@ -1,8 +1,7 @@
 "use client";
 import { FriendContext } from "@/Components/FriendsProvider/FriendsProvider";
 import React, { useContext } from "react";
-import { Cell, Legend, Pie, PieChart, Tooltip } from "recharts";
-
+ import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 const StatsPage = () => {
   const { timeline } = useContext(FriendContext);
 
@@ -32,19 +31,32 @@ const StatsPage = () => {
 </div>
   }
   return (
-    <div className="w-full md:w-7xl mx-auto py-10 md:py-20 space-y-6">
-      <h1 className="font-bold text-5xl">Friendship Analytics</h1>
 
-      <div className="bg-white rounded p-8 space-y-2">
-        <h4 className="font-medium text-xl">By Interaction Type</h4>
-        <PieChart width={400}  height={400} className="mx-auto">
+
+<div className="w-full max-w-7xl mx-auto py-10 md:py-20 space-y-6 px-4">
+  
+  <h1 className="font-bold text-3xl md:text-5xl text-center md:text-left">
+    Friendship Analytics
+  </h1>
+
+  <div className="bg-white rounded-xl p-5 md:p-8 space-y-4 shadow-sm">
+    
+    <h4 className="font-medium text-lg md:text-xl text-center md:text-left">
+      By Interaction Type
+    </h4>
+
+    <div className="w-full h-70 sm:h-87.5 md:h-100">
+      
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart>
+
           <Pie
             data={data}
             dataKey="count"
             nameKey="type"
-            innerRadius="80%"
+            innerRadius="70%"
             outerRadius="100%"
-            cornerRadius="50%"
+            cornerRadius={20}
             paddingAngle={5}
           >
             {data.map((item, index) => (
@@ -54,10 +66,10 @@ const StatsPage = () => {
                   item.type === "Text"
                     ? "#7E35E1"
                     : item.type === "Call"
-                      ? "#244D3F"
-                      : item.type === "Video"
-                        ? "#37A163"
-                        : "#ccc"
+                    ? "#244D3F"
+                    : item.type === "Video"
+                    ? "#37A163"
+                    : "#ccc"
                 }
               />
             ))}
@@ -65,9 +77,13 @@ const StatsPage = () => {
 
           <Tooltip />
           <Legend />
+
         </PieChart>
-      </div>
+      </ResponsiveContainer>
+
     </div>
+  </div>
+</div>
   );
 };
 
