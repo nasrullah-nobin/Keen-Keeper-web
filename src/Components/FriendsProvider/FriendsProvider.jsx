@@ -1,4 +1,5 @@
 "use client";
+import { data } from "autoprefixer";
 import React, { createContext, useEffect, useState } from "react";
 
 export const FriendContext = createContext();
@@ -12,11 +13,13 @@ const FriendsProvider = ({ children }) => {
       try {
         const res = await fetch("/friends.json");
         const data = await res.json();
+       setTimeout(() => {
         setFriends(data)
+        setLoading(false)
+       }, 1500);
       } catch (error) {
         console.error("Failed to fetch Friends", error);
-      } finally {
-        setLoading(false);
+        setLoading(false)
       }
     };
     friendFetch()

@@ -5,26 +5,27 @@ import { BsFillChatRightTextFill } from "react-icons/bs";
 import { HiOutlineVideoCamera } from "react-icons/hi";
 import { MdOutlineAddIcCall } from "react-icons/md";
 
-const TimelinePage = () => {
+const TimelinePage =  () => {
+
   const { timeline, friends } = useContext(FriendContext);
   if (timeline.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center text-center py-20 px-6 bg-white rounded-xl shadow-sm">
-        {/* Icon */}
+      
         <div className="text-5xl mb-4">📭</div>
 
-        {/* Title */}
+        
         <h2 className="text-2xl font-semibold text-gray-800 mb-2">
           No interactions yet
         </h2>
 
-        {/* Description */}
+        
         <p className="text-gray-500 max-w-md leading-relaxed">
           No interactions recorded yet. Call, text or video your friends to
           start building your timeline.
         </p>
 
-        {/* CTA Buttons */}
+       
         <div className="flex gap-3 mt-6">
           <button className="px-4 py-2 rounded-lg bg-[#244D3F] text-white hover:opacity-90">
             📞 Call
@@ -45,9 +46,9 @@ const TimelinePage = () => {
 
       <select defaultValue="Filter timeline" className="select">
         <option disabled={true}>Filter timeline</option>
-        <option>Crimson</option>
-        <option>Amber</option>
-        <option>Velvet</option>
+        <option>Call</option>
+        <option>Text</option>
+        <option>Video</option>
       </select>
       {timeline.map((item, index) => {
         const friend = friends.find((f) => f.id == item.friendId);
