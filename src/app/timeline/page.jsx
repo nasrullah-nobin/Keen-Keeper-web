@@ -7,7 +7,38 @@ import { MdOutlineAddIcCall } from "react-icons/md";
 
 const TimelinePage = () => {
   const { timeline, friends } = useContext(FriendContext);
+  if (timeline.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center text-center py-20 px-6 bg-white rounded-xl shadow-sm">
+        {/* Icon */}
+        <div className="text-5xl mb-4">📭</div>
 
+        {/* Title */}
+        <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+          No interactions yet
+        </h2>
+
+        {/* Description */}
+        <p className="text-gray-500 max-w-md leading-relaxed">
+          No interactions recorded yet. Call, text or video your friends to
+          start building your timeline.
+        </p>
+
+        {/* CTA Buttons */}
+        <div className="flex gap-3 mt-6">
+          <button className="px-4 py-2 rounded-lg bg-[#244D3F] text-white hover:opacity-90">
+            📞 Call
+          </button>
+          <button className="px-4 py-2 rounded-lg bg-[#7E35E1] text-white hover:opacity-90">
+            💬 Text
+          </button>
+          <button className="px-4 py-2 rounded-lg bg-[#37A163] text-white hover:opacity-90">
+            🎥 Video
+          </button>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="py-20 w-7xl mx-auto space-y-3">
       <h6 className="text-5xl font-bold">Timeline </h6>

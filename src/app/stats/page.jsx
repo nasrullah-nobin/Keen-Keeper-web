@@ -15,6 +15,22 @@ const StatsPage = () => {
     { type: "Text", count: text.length },
     { type: "Video", count: video.length },
   ];
+
+  if(timeline.length=== 0){
+    return <div className="flex flex-col items-center justify-center text-center py-20 px-6 bg-white rounded-xl shadow-sm">
+  
+  <div className="text-5xl mb-4">📊</div>
+
+  <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+    No analytics available yet
+  </h2>
+
+  <p className="text-gray-500 max-w-md leading-relaxed">
+    Start interacting with your friends to see insights like calls, texts, and video activity here.
+  </p>
+
+</div>
+  }
   return (
     <div className="w-7xl mx-auto py-20 space-y-6">
       <h1 className="font-bold text-5xl">Friendship Analytics</h1>
