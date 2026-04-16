@@ -6,7 +6,7 @@ import { HiOutlineVideoCamera } from "react-icons/hi";
 import { MdOutlineAddIcCall } from "react-icons/md";
 
 const TimelinePage = () => {
-  const { timeline, setTimeline, friends } = useContext(FriendContext);
+  const { timeline, friends } = useContext(FriendContext);
   const [filteredTimeline, setFilteredTimeline] = useState([]);
   useEffect(() => {
     setFilteredTimeline(timeline);
@@ -57,20 +57,22 @@ const TimelinePage = () => {
   }
 
   return (
-    <div className="py-20 w-7xl mx-auto space-y-3">
+    <div className="py-20 max-w-full md:w-7xl mx-auto space-y-3">
       <h6 className="text-5xl font-bold">Timeline </h6>
 
-      <select
-        defaultValue="Filter timeline"
-        className="select"
-        onChange={(e) => handelSorting(e.target.value)}
-      >
-        <option disabled={true}>Filter timeline</option>
-        <option value=''>All</option>
-        <option value='call'>Call</option>
-        <option value='text'>Text</option>
-        <option value='video'>Video</option>
-      </select>
+      
+        <select
+          defaultValue="Filter timeline"
+          className="select"
+          onChange={(e) => handelSorting(e.target.value)}
+        >
+          <option disabled={true}>Filter timeline</option>
+          <option value="">All</option>
+          <option value="call">Call</option>
+          <option value="text">Text</option>
+          <option value="video">Video</option>
+        </select>
+     
       {filteredTimeline.length === 0 ? (
         <p className="text-gray-500">No filtered results found</p>
       ) : (

@@ -32,12 +32,12 @@ const StatsPage = () => {
 </div>
   }
   return (
-    <div className="w-7xl mx-auto py-20 space-y-6">
+    <div className="w-full md:w-7xl mx-auto py-10 md:py-20 space-y-6">
       <h1 className="font-bold text-5xl">Friendship Analytics</h1>
 
       <div className="bg-white rounded p-8 space-y-2">
         <h4 className="font-medium text-xl">By Interaction Type</h4>
-        <PieChart width={400} height={400} className="mx-auto">
+        <PieChart width={400}  height={400} className="mx-auto">
           <Pie
             data={data}
             dataKey="count"

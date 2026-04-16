@@ -28,8 +28,8 @@ const FriendsDetails = ({ friend }) => {
   };
 
   return (
-    <div className="grid grid-cols-5 max-w-7xl mx-auto py-20 gap-6">
-      <div className="col-span-2 space-y-3.5">
+    <div className="grid grid-cols-1 md:grid-cols-5 max-w-7xl mx-auto md:py-20 gap-6">
+      <div className="col-span-1 md:col-span-2 space-y-3.5">
         <div className="bg-white rounded p-6 text-center space-y-3.5">
           <Image
             src={friend.picture}
@@ -67,16 +67,16 @@ const FriendsDetails = ({ friend }) => {
           </button>
         </div>
       </div>
-      <div className="text-center col-span-3 grid grid-cols-3 gap-6">
-        <div className="rounded p-8 bg-white">
+      <div className="text-center md:col-span-3 grid md:grid-cols-3 gap-6">
+        <div className="rounded p-8 bg-white col-span-3 md:col-span-1">
           <p className="font-semibold text-3xl">{friend.days_since_contact}</p>
           <p className="text-lg">Days Since Contact</p>
         </div>
-        <div className="rounded p-8 bg-white">
+        <div className="rounded p-8 bg-white col-span-3 md:col-span-1">
           <p className="font-semibold text-3xl">{friend.goal}</p>
           <p className="text-lg">Goal (Days)</p>
         </div>
-        <div className="rounded p-8 bg-white">
+        <div className="rounded p-8 bg-white col-span-3 md:col-span-1">
           <p className="font-semibold text-3xl">{friend.next_due_date}</p>
           <p className="text-lg">Next Due</p>
         </div>
