@@ -1,5 +1,4 @@
 "use client";
-import { data } from "autoprefixer";
 import React, { createContext, useEffect, useState } from "react";
 
 export const FriendContext = createContext();

@@ -8,11 +8,12 @@ import { MdOutlineAddIcCall } from "react-icons/md";
 const TimelinePage = () => {
   const { timeline, friends } = useContext(FriendContext);
   const [filteredTimeline, setFilteredTimeline] = useState([]);
+  
   useEffect(() => {
     setFilteredTimeline(timeline);
   }, [timeline]);
 
-  const handelSorting = (type) => {
+  const handelFiltering = (type) => {
     if (!type) {
       setFilteredTimeline(timeline);
       return;
@@ -56,15 +57,29 @@ const TimelinePage = () => {
     );
   }
 
+const handelSorting = (type) => {
+  let sorted = [...filteredTimeline];
+
+  if (type === "newest") {
+    sorted.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  }
+
+  if (type === "oldest") {
+    sorted.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+  }
+console.log(sorted)
+  setFilteredTimeline(sorted);
+};
+
   return (
     <div className="py-20 max-w-full md:w-7xl mx-auto space-y-3">
       <h6 className="text-5xl font-bold">Timeline </h6>
 
-      
+      <div>
         <select
           defaultValue="Filter timeline"
           className="select"
-          onChange={(e) => handelSorting(e.target.value)}
+          onChange={(e) => handelFiltering(e.target.value)}
         >
           <option disabled={true}>Filter timeline</option>
           <option value="">All</option>
@@ -72,7 +87,26 @@ const TimelinePage = () => {
           <option value="text">Text</option>
           <option value="video">Video</option>
         </select>
-     
+
+
+        <div className="dropdown dropdown-bottom dropdown-end">
+          <div tabIndex={0} role="button" className="btn m-1">
+           Sort ⬇️
+          </div>
+          <ul
+            tabIndex="-1"
+            className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+          >
+            <li>
+              <a onClick={()=> handelSorting('newest')}>newest </a>
+            </li>
+            <li>
+              <a onClick={()=> handelSorting('oldest')}>oldest</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
       {filteredTimeline.length === 0 ? (
         <p className="text-gray-500">No filtered results found</p>
       ) : (
@@ -95,7 +129,7 @@ const TimelinePage = () => {
                     <span className="font-bold text-black">{item.type}</span>{" "}
                     with {friend?.name}
                   </h1>
-                  <p className="text-lg text-[#64748B]">{item.createdAt}</p>
+                  <p className="text-lg text-[#64748B]">{new Date(item.createdAt).toLocaleString()}</p>
                 </div>
               </div>
             </div>

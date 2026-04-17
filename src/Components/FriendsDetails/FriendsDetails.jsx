@@ -20,7 +20,7 @@ const FriendsDetails = ({ friend }) => {
       {
         friendId: friend.id,
         type: type,
-        createdAt: new Date().toLocaleDateString(),
+        createdAt: new Date().toISOString(),
       },
     ]);
 

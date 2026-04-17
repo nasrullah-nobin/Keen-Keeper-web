@@ -1,22 +1,33 @@
 import FriendsDetails from "@/Components/FriendsDetails/FriendsDetails";
-import { notFound } from "next/navigation";
+import fs from "fs/promises";
+import path from "path";
 
+export const metadata = {
+  title: "Friends Details",
+  description: "Keep Your Friendships Alive",
+};
 
 const DetailsPage = async ({ params }) => {
-  await new Promise((res) => setTimeout(res, 800));
-
   const { id } = await params;
-  const data = await fetch("http://localhost:3000/friends.json");
-  const friendsData = await data.json();
 
-  const friend = friendsData.find((friend) => friend.id === parseInt(id));
+  
+  const filePath = path.join(process.cwd(), "public", "friends.json");
+  const file = await fs.readFile(filePath, "utf-8");
+  const friendsData = JSON.parse(file);
+
+  const friend = friendsData.find(
+    (f) => String(f.id) === String(id)
+  );
+
   if (!friend) {
-    notFound();
+    return (
+      <div className="text-center py-20">
+        Friend not found 😢
+      </div>
+    );
   }
 
-  return (
-   <FriendsDetails friend={friend}></FriendsDetails>
-  );
+  return <FriendsDetails friend={friend} />;
 };
 
 export default DetailsPage;

@@ -1,11 +1,10 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "framework": "vite",
-  "routes": [
+  "framework": "nextjs",
+  "redirects": [
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
     }
   ]
 }
